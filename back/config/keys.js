@@ -1,3 +1,3 @@
 module.exports ={
-    mongoUrl:''
+    mongoUrl:'mongodb://localhost/lead'
 }

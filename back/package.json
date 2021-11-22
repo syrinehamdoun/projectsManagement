@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm start"
   },
-  "author": "emna darek, roua laadouz",
+  "author": "emna darek, roua laadouz, Syrine Hamdoun",
   "license": "ISC",
   "dependencies": {
     "@formspree/react": "^2.2.4",

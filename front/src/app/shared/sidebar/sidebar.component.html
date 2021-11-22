@@ -3,9 +3,11 @@
     <div class="logo clearfix">
         <a [routerLink]="['/']" class="logo-text float-left">
             <div class="logo-img">
-                <img [src]="logoUrl" />
+                <img [src]="logoUrl"  style="heigth:10px;width:40px;"/>
             </div>
-            <span class="text align-middle">APEX</span>
+            <span class="text align-middle"> 
+                               <img src="assets/img/logo_title1.png"  style="heigth:10px;width:80px;"/>
+            </span>
         </a>
         <a class="nav-toggle d-none d-sm-none d-md-none d-lg-block" id="sidebarToggle" href="javascript:;">
             <i #toggleIcon appSidebarToggle class="ft-toggle-right toggle-icon" data-toggle="expanded"></i>

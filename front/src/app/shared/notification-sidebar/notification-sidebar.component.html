@@ -8,7 +8,107 @@
     <div class="row">
       <div class="col-12 mt-1">
         <ngb-tabset>
-          
+          <ngb-tab>
+            <ng-template ngbTabTitle><b>Activity</b></ng-template>
+            <ng-template ngbTabContent>
+              <div id="activity" class="col-12 timeline-left">
+                <h6 class="mt-1 mb-3 text-bold-400 text-left">RECENT ACTIVITY</h6>
+                <div id="timeline" class="timeline-left timeline-wrapper">
+                  <ul class="timeline">
+                    <li class="timeline-line"></li>
+                    <li class="timeline-item text-left text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-purple bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="ft-shopping-cart"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="deep-purple-text medium-small">just now</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Jim Doe Purchased new
+                          equipments for zonal office.</p>
+                      </div>
+                    </li>
+                    <li class="timeline-item text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-info bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="fa fa-plane"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="cyan-text medium-small">Yesterday</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Your Next flight for USA
+                          will be on 15th August 2015.</p>
+                      </div>
+                    </li>
+                    <li class="timeline-item text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-success bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="ft-mic"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="green-text medium-small">5 Days Ago</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Natalya Parker Send you a
+                          voice mail for next conference.</p>
+                      </div>
+                    </li>
+                    <li class="timeline-item text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-warning bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="ft-map-pin"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="amber-text medium-small">1 Week Ago</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Jessy Jay open a new store
+                          at S.G Road.</p>
+                      </div>
+                    </li>
+                    <li class="timeline-item text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-red bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="ft-inbox"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="deep-orange-text medium-small">2 Week Ago</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">voice mail for conference.
+                        </p>
+                      </div>
+                    </li>
+                    <li class="timeline-item text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-cyan bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="ft-mic"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="brown-text medium-small">1 Month Ago</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Natalya Parker Send you a
+                          voice mail for next conference.</p>
+                      </div>
+                    </li>
+                    <li class="timeline-item text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-amber bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="ft-map-pin"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="deep-purple-text medium-small">3 Month Ago</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">Jessy Jay open a new store
+                          at S.G Road.</p>
+                      </div>
+                    </li>
+                    <li class="timeline-item text-left">
+                      <div class="timeline-badge">
+                        <span class="bg-grey bg-lighten-1" data-toggle="tooltip" data-placement="right"
+                          title="Portfolio project work"><i class="ft-inbox"></i></span>
+                      </div>
+                      <div class="col s9 recent-activity-list-text">
+                        <a href="#" class="grey-text medium-small">1 Year Ago</a>
+                        <p class="mt-0 mb-2 fixed-line-height font-weight-300 medium-small">voice mail for conference.
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
           <ngb-tab>
             <ng-template ngbTabTitle><b>Chat</b></ng-template>
             <ng-template ngbTabContent>
@@ -213,7 +313,7 @@
                         <span class="text-bold-500">Notifications</span>
                         <div class="notification-cb">
                           <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                            <input checked="checked" class="custom-control-input cz-bg-image-display" type="checkbox"
+                            <input checked="checked" class="custom-control-input " type="checkbox"
                               id="notifications1">
                             <label class="custom-control-label d-block" for="notifications1"></label>
                           </div>
@@ -228,7 +328,7 @@
                         <span class="text-bold-500">Show recent activity</span>
                         <div class="notification-cb">
                           <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                            <input checked="checked" class="custom-control-input cz-bg-image-display" type="checkbox"
+                            <input checked="checked" class="custom-control-input " type="checkbox"
                               id="recent-activity1">
                             <label class="custom-control-label d-block" for="recent-activity1"></label>
                           </div>
@@ -243,7 +343,7 @@
                         <span class="text-bold-500">Notifications</span>
                         <div class="notification-cb">
                           <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                            <input class="custom-control-input cz-bg-image-display" type="checkbox" id="notifications2">
+                            <input class="custom-control-input " type="checkbox" id="notifications2">
                             <label class="custom-control-label d-block" for="notifications2"></label>
                           </div>
                         </div>
@@ -257,7 +357,7 @@
                         <span class="text-bold-500">Show recent activity</span>
                         <div class="notification-cb">
                           <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                            <input class="custom-control-input cz-bg-image-display" type="checkbox"
+                            <input class="custom-control-input " type="checkbox"
                               id="recent-activity2">
                             <label class="custom-control-label d-block" for="recent-activity2"></label>
                           </div>
@@ -272,7 +372,7 @@
                         <span class="text-bold-500">Show your emails</span>
                         <div class="notification-cb">
                           <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                            <input class="custom-control-input cz-bg-image-display" type="checkbox" id="show-emails">
+                            <input class="custom-control-input " type="checkbox" id="show-emails">
                             <label class="custom-control-label d-block" for="show-emails"></label>
                           </div>
                         </div>
@@ -286,7 +386,7 @@
                         <span class="text-bold-500">Show Task statistics</span>
                         <div class="notification-cb">
                           <div class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                            <input class="custom-control-input cz-bg-image-display" type="checkbox" id="show-stats">
+                            <input class="custom-control-input " type="checkbox" id="show-stats">
                             <label class="custom-control-label d-block" for="show-stats"></label>
                           </div>
                         </div>
