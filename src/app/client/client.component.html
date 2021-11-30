@@ -1,0 +1,24 @@
+<div class="row text-left">
+  <div class="col-12">
+    <div class="content-header">Clients</div>
+  </div>
+</div>
+
+<!--built-in column filter types Starts-->
+<section id="filter">
+  <div class="row text-left">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-body">
+            <div class="table-responsive">
+              <ng2-smart-table [settings]="settings" [source]="clients" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+              (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--built-in column filter types Ends-->
+
