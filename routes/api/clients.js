@@ -5,20 +5,19 @@ const ClientControllers = require("../../controllers/ClientController");
 const Client = require('../../models/Client.module')
 
 
-// add  new task
+// add  new client
 router.post("/addClient", ClientControllers.addClient);
 
-// get all tasks
+// get all client
 router.get("/getAllclients", ClientControllers.getAllclients);
 
 // get one tasks
 router.get("/getOneclients", ClientControllers.getOneclient);
 
-// get one tasks
-//router.put("/updateStatusClient", ClientControllers.UpdateStatusclient);
+// update one client
+router.patch("/updateClient/:id", ClientControllers.updateClient);
 
 // delete  tasks
-//router.delete("/deleteClient", ClientControllers.deleteclient);
 router.patch("/deleteClient/:id",ClientControllers.deleteclient)
 
 module.exports=router;

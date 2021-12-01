@@ -21,18 +21,28 @@ export class ClientService {
       .http
       .get(`${this.url}/api/clients/getAllclients`);
   }
-  addClients(nom,prenom,phone,mail){
+  addClients(newClient){
     return this
       .http
-      .post(`${this.url}/api/clients/addClient`,{nom:nom,prenom:prenom,mail:mail,phone:phone},this.httpOptions);
+      .post(`${this.url}/api/clients/addClient`,{newClient})     
+      .subscribe(()=>{  
+        console.log("Added");  
+    });
   }
   deleteClients(id:string,deleted) {
-    console.log(deleted)
     return this
       .http
       .patch(`${this.url}/api/clients/deleteClient/`+id,{deleted:deleted})
       .subscribe(()=>{  
         console.log("Deleted");  
+    }); 
+  }
+  updateClients(id:string,clientUpdated) {
+    return this
+      .http
+      .patch(`${this.url}/api/clients/updateClient/`+id,{clientUpdated})
+      .subscribe(()=>{  
+        console.log("Updated");  
     }); 
   }
 }

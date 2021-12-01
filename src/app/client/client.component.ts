@@ -56,13 +56,12 @@ export class ClientComponent {
     ngOnInit() {
         this.clientService.getClients().subscribe(data => {
           this.clients=data
-          for(var i=0 ;i< Object.keys(data).length;i++)
+         /* for(var i=0 ;i< Object.keys(data).length;i++)
           {
             if (data[i].deleted==true) {
               this.clients.splice(i);
             }
-          }
-          console.log(this.clients);
+          }*/
           this.filterSource = this.clients;
           this.source = this.clients;
           this.alertSource=this.clients;        
@@ -103,10 +102,8 @@ export class ClientComponent {
     //  For confirm action On Delete
     onDeleteConfirm(event) {
         if (window.confirm('Are you sure you want to delete?')) {
-            console.log(event)
             event.confirm.resolve();
             event.data.deleted=true;
-            console.log(event.data);
             this.clientService.deleteClients(event.data._id,event.data.deleted);
         } else {
             event.confirm.reject();
@@ -117,8 +114,9 @@ export class ClientComponent {
     //  For confirm action On Save
     onSaveConfirm(event) {
         if (window.confirm('Are you sure you want to save?')) {
-            event.newData['name'] += ' + added in code';
-            event.confirm.resolve(event.newData);
+          event.confirm.resolve(event.newData);
+          event.newData.phone=parseInt(event.newData.phone);
+          this.clientService.updateClients(event.data._id,event.newData);           
         } else {
             event.confirm.reject();
         }
@@ -129,10 +127,8 @@ export class ClientComponent {
     onCreateConfirm(event) {
         if (window.confirm('Are you sure you want to create?')) {
             event.confirm.resolve(event.newData);
-            event.newData.phone=521542
-            this.newClient.push(event.newData);
-            const {nom,prenom,phone,mail} = event.newData
-            this.clientService.addClients(event.newData.nom,event.newData.prenom,event.newData.phone,event.newData.mail);
+            event.newData.phone=parseInt(event.newData.phone);
+            this.clientService.addClients(event.newData);
         } else {
             event.confirm.reject();
         }

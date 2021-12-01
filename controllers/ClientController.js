@@ -8,12 +8,12 @@ const ClientControllers = {};
 ClientControllers.addClient = async (req, res) => {
   console.log(req.body)
   try {
-    const client = await new Client({
+    const client =  new Client({
       _id:mongoose.Types.ObjectId(),
-        nom : req.body.nom,
-        prenom : req.body.prenom,
-        phone : req.body.phone,
-        mail : req.body.mail,
+        nom : req.body.newClient.nom,
+        prenom : req.body.newClient.prenom,
+        phone : req.body.newClient.phone,
+        mail : req.body.newClient.mail,
     });
 
     await client.save();
@@ -26,6 +26,14 @@ ClientControllers.addClient = async (req, res) => {
 ClientControllers.getAllclients = async (req, res) => {
   try {
     const clients = await Client.find();
+    for(var i =0 ;i<clients.length;i++){
+      if(clients[i].deleted==true){
+        clients.splice(i,1)
+      }
+    }
+    for(var i =0 ;i<clients.length;i++){
+      console.log(clients[i].deleted)
+    }
     res.status(200).json(clients);
   } catch (err) {
     res.status(err.message).json({ message: err.message });
@@ -46,6 +54,23 @@ ClientControllers.getAllclients = async (req, res) => {
     res.status(400).json({ message: err.message });
   }*/
 //update status task
+ClientControllers.updateClient= async (req, res) => {
+  console.log(req.body)
+
+    try {
+        await Client.findByIdAndUpdate(req.params.id, {
+            $set: {
+              nom : req.body.clientUpdated.nom,
+              prenom : req.body.clientUpdated.prenom,
+              phone : req.body.clientUpdated.phone,
+              mail : req.body.clientUpdated.mail,            },
+          });
+        const client = await Client.findById(req.query.id);
+        res.status(201).json({ message: "New client being updated ✅", client });
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+};
 ClientControllers.deleteclient= async (req, res) => {
   console.log(req.body)
 
@@ -56,7 +81,7 @@ ClientControllers.deleteclient= async (req, res) => {
             },
           });
         const client = await Client.findById(req.query.id);
-        res.status(201).json({ message: "New client being updated ✅", client });
+        res.status(201).json({ message: "New client being added ✅", client });
       } catch (err) {
         res.status(400).json({ message: err.message });
       }
