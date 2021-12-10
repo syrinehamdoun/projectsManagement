@@ -3,7 +3,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { LayoutService } from '../services/layout.service';
 import { Subscription } from 'rxjs';
 import { ConfigService } from '../services/config.service';
-
+import { User } from './../../login/user';
+import { LoginService } from './../../login/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
@@ -19,8 +21,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   toggleHideSidebar = new EventEmitter<Object>();
 
   public config: any = {};
-
-  constructor(public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService) {
+  currentUser: User;
+  username:string;
+  users = [];
+  constructor(private router: Router, private route: ActivatedRoute,public translate: TranslateService, private layoutService: LayoutService, private configService:ConfigService,private loginService: LoginService) {
+    
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|es|pt|de/) ? browserLang : "en");
 
@@ -37,8 +42,17 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.config = this.configService.templateConf;
+      this.currentUser = this.loginService.currentUserValue;
+      this.username=this.currentUser.userName;
   }
-
+  logout(){
+    const res=this.loginService.logout();
+    this.router.navigate(['/login'], { relativeTo: this.route.parent });
+    
+    
+    
+    //alert('logout');
+  }
   ngAfterViewInit() {
     if(this.config.layout.dir) {
       setTimeout(() => {

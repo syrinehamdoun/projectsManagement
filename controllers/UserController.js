@@ -44,37 +44,48 @@ UserControllers.getAllUsers = async (req, res) => {
 
 // Login
 UserControllers.login = async (req, res) => {
-  let username = req.body.username;
-  let password = req.body.password;
+  let username = req.body.login.userName;
+  let password = req.body.login.password;
+  console.log(req.body)
   const user = await User.findOne({ username });
   console.log(user)
   if (user == null) {
-    return res.status(404).json({ message: "Cannot find user" });
+    return res.json({
+      auth: false,
+      message: "Not Allowed, please check your username or password",
+    });
+    //return res.status(404).json({ message: "Cannot find user" });
   }
   try {
     console.log(await bcrypt.compare(password, user.password))
     if (await bcrypt.compare(password, user.password)) {
-      console.log('problem createToken')
       const token = createToken(user);
-      console.log('testt2')
+      console.log(token)
       req.session.user = user;
       await res
         .header("auth", token)
         .json({
           auth: true,
-          token,
-          user: {
+            token,
+            admin: user.admin,
+            email: user.email,
+            phone: user.phone,
+            address: user.address,
+            city: user.city,
+            state: user.state,
+            zip: user.zip,
+            country: user.country,
             password: user.password,
-            username: user.username,
-          },
+            userName: user.username,
+          
         });
     } else {
       res.json({
+        auth: false,
         message: "Not Allowed, please check your username or password",
       });
     }
   } catch (err) {
-    
     res.status(400).json({ message: err.message });
   }
 };
