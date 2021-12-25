@@ -9,18 +9,24 @@ const session = require("express-session");
 const mongoose=require('mongoose')
 const autoIncrement = require('mongoose-auto-increment');
 const app=express()
+const cors = require("cors");
 
-
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+    methods: ["GET", "POST","PATCH"],
+    credentials: true,
+  })
+);
 // session
 app.use(
-    session({
-      key: "token",
-      secret: process.env.TOKEN_TEXT,
-      resave: false,
-      saveUninitialized: false,
-    })
-  );
-
+  session({
+    key: "token",
+    secret: process.env.TOKEN_TEXT,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 // Setting up Dependencies
 app.use(express.json())
 app.use(morgan("dev"));
@@ -33,12 +39,16 @@ const items=require('./routes/api/items')
 const taches=require('./routes/api/taches')
 const users=require('./routes/api/users')
 const clients=require('./routes/api/clients')
-app.use(function(req, res, next) {
+const roles=require('./routes/api/roles')
+
+
+//is not good for secuirty,remplace with cors
+/*app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
-});
+});*/
 // use routes
 
 //item is for testing
@@ -46,7 +56,7 @@ app.use('/api/items',items)
 app.use('/api/taches',taches)
 app.use('/api/users',users)
 app.use('/api/clients',clients)
-
+app.use('/api/roles',roles)
 
 
 app.all("*", (req, res, next) => {

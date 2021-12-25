@@ -9,14 +9,19 @@ const UserControllers = {};
 // Add new User
 UserControllers.addUser = async (req, res) => {
   // //avatar: req.file.path,
+  console.log(req.body)
+  console.log(req.body.newUser.username)
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(req.body.newUser.password, 10);
     const user = await new User({
       _id: mongoose.Types.ObjectId(),
-      username: req.body.username,
-      email: req.body.email,
+      username: req.body.newUser.username,
+      email: req.body. newUser.email,
       password: hashedPassword,
-      phone: req.body.phone,
+      phone: req.body. newUser.phone,
+    });
+    /*
+    phone: req.body.phone,
       address: req.body.address,
       city: req.body.city,
       admin: req.body.admin,
@@ -24,7 +29,7 @@ UserControllers.addUser = async (req, res) => {
       zip: req.body.zip,
       country: req.body.country,
      
-    });
+     */
 
     await user.save();
     res.status(201).json({ message: "New user being added ✅", user });
@@ -34,47 +39,73 @@ UserControllers.addUser = async (req, res) => {
 };
 // GET all users
 UserControllers.getAllUsers = async (req, res) => {
+
   try {
     const users = await User.find();
+    for(var i =0 ;i<users.length;i++){
+      if(users[i].deleted==true){
+        users.splice(i,1)
+      }
+    }
+    for(var i =0 ;i<users.length;i++){
+      console.log(users[i].deleted)
+    }
     res.status(200).json(users);
   } catch (err) {
     res.status(err.message).json({ message: err.message });
   }
+  /*try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(err.message).json({ message: err.message });
+  }*/
 };
 
 // Login
 UserControllers.login = async (req, res) => {
-  let username = req.body.username;
-  let password = req.body.password;
+  let username = req.body.login.userName;
+  let password = req.body.login.password;
+  console.log(req.body)
   const user = await User.findOne({ username });
   console.log(user)
   if (user == null) {
-    return res.status(404).json({ message: "Cannot find user" });
+    return res.json({
+      auth: false,
+      message: "Not Allowed, please check your username or password",
+    });
+    //return res.status(404).json({ message: "Cannot find user" });
   }
   try {
     console.log(await bcrypt.compare(password, user.password))
     if (await bcrypt.compare(password, user.password)) {
-      console.log('problem createToken')
       const token = createToken(user);
-      console.log('testt2')
+      console.log(token)
       req.session.user = user;
       await res
         .header("auth", token)
         .json({
           auth: true,
-          token,
-          user: {
+            token,
+            admin: user.admin,
+            email: user.email,
+            phone: user.phone,
+            address: user.address,
+            city: user.city,
+            state: user.state,
+            zip: user.zip,
+            country: user.country,
             password: user.password,
-            username: user.username,
-          },
+            userName: user.username,
+          
         });
     } else {
       res.json({
+        auth: false,
         message: "Not Allowed, please check your username or password",
       });
     }
   } catch (err) {
-    
     res.status(400).json({ message: err.message });
   }
 };
@@ -86,12 +117,25 @@ UserControllers.logout = async (req, res) => {
 // deleteUser
 UserControllers.deleteUser = async (req, res) => {
   //console.log(req.query.id);
-  try {
+  /*try {
     const user = await User.findByIdAndDelete(req.query.id);
     res.status(200).json({ message: "this user been deleted", user });
   } catch (err) {
     res.status(err.status).json({ message: err.message });
-  }
+  }*/
+  console.log(req.body)
+
+    try {
+        await User.findByIdAndUpdate(req.params.id, {
+            $set: {
+                deleted : req.body.deleted
+            },
+          });
+        const user = await User.findById(req.query.id);
+        res.status(201).json({ message: "New client being added ✅", user });
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
 };
 //getOneByID
 UserControllers.getOneUser = async (req, res) => {

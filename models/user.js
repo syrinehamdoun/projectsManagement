@@ -26,7 +26,12 @@ const userSchema = new Schema({
   address: { type: String },
   city: { type: String },
   state: { type: String },
+  role: { type: Number },
   zip: { type: String },
+  deleted: {
+		type: Boolean,
+		default:0
+	},
   country: { type: String },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

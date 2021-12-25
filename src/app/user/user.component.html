@@ -1,3 +1,29 @@
+<div class="row text-left">
+    <div class="col-12">
+      <div class="content-header">Users</div>
+    </div>
+  </div>
+  
+  <!--built-in column filter types Starts-->
+  <section id="filter">
+    <div class="row text-left">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="table-responsive">
+                <ng2-smart-table [settings]="settings" [source]="Users" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onSaveConfirm($event)"
+                (createConfirm)="onCreateConfirm($event)"></ng2-smart-table>            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--built-in column filter types Ends-->
+  
+  
+
 <div class="row">
   <div class="col-sm-12">
       <div class="content-header">User</div>
@@ -128,7 +154,7 @@
                                           <span style="margin-right:10px;">
                                               <i class="ft-chevron-left"></i>
                                           </span> Previous</button>
-                                      <button uiSref="result" type="button" class="btn btn-raised btn-success" [disabled]="!addressForm.valid" awResetWizard>
+                                      <button uiSref="result" type="button"  (click)="onSubmit()"  class="btn btn-raised btn-success" [disabled]="!addressForm.valid" awResetWizard>
                                           Finish
                                           <span style="margin-left:10px;">
                                               <i class="ft-chevron-right"></i>

@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from '@angular/forms';
@@ -9,7 +10,23 @@ import { LockScreenPageComponent } from "./lock-screen/lock-screen-page.componen
 
 import { LoginComponent } from "./login.component";
 
+export class user{
+    constructor(
+        public username,
+        public admin,
+        public password,
+        public email,
+        public phone,
+        public address,
+        public city,
+        public state,
+        public country,
+        public createdAt,
+        public updatedAt,
 
+    ){}
+
+}
 @NgModule({
     imports: [
         CommonModule,
@@ -18,7 +35,10 @@ import { LoginComponent } from "./login.component";
     ],
     declarations: [
         ErrorPageComponent,
+        ForgotPasswordPageComponent,
+        LockScreenPageComponent,
         LoginComponent,
+      
     ]
 })
 export class LoginModule { }
