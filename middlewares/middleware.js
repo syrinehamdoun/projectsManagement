@@ -4,19 +4,21 @@ const { User } = require("../models/user");
 const middleware = {};
 middleware.validator = async (req, res, next) => {
   //check User
-  const userCheck = await User.findOne({ username: req.body.username });
+  const userCheck = await User.findOne({ username: req.body.newUser.username });
   if (userCheck) {
     return res.status(400).send("This name is already been used");
   }
   //check email
-  const email = req.body.email;
+  const email = req.body.newUser.email;
   var regEx = /\S+@\S+\.\S+/;
   if (!regEx.test(email)) {
     return res.status(400).json({ message: "Invalid email address" });
   }
   //check password
-  const pass = req.body.password;
-  const passConf = req.body.passwordConf;
+  const pass = req.body.newUser.password;
+  const passConf = req.body.newUser.password;
+
+  //const passConf = req.body.passwordConf;
 
   if (pass !== passConf) {
     return res.status(400).json({ message: "false Password!, Try Again" });

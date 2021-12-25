@@ -8,6 +8,7 @@ import { CustomFormsModule } from 'ng2-validation';
 import { MatchHeightModule } from "../shared/directives/match-height.directive";
 import { ArchwizardModule } from 'angular-archwizard';
 import { UserComponent } from './user.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { UserComponent } from './user.component';
         ArchwizardModule,
         CustomFormsModule,
         MatchHeightModule,
-        NgbModule
+        NgbModule,
+        Ng2SmartTableModule
     ],
     declarations: [
     
