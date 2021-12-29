@@ -19,6 +19,7 @@ export class UserService {
       .get(`${this.url}/api/users/`);
   }
   addUsers(newUser){
+    console.log(newUser);
     return this
       .http
       .post(`${this.url}/api/users/register`,{newUser})     

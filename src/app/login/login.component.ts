@@ -14,6 +14,9 @@ import { Login } from './login';
 
 export class LoginComponent  {
 
+
+
+
     @ViewChild('f', {static: false}) loginForm: NgForm;
 
     constructor(private router: Router,private LoginService: LoginService,

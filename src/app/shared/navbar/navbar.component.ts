@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.config = this.configService.templateConf;
-      this.currentUser = this.loginService.currentUserValue;
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
       this.username=this.currentUser.userName;
   }
   logout(){
