@@ -23,7 +23,9 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
         Ng2SmartTableModule
     ],
     declarations: [
-        ProjectComponent       
+        ProjectComponent ,
+        
+
     ]
 })
 export class ProjectModule { }

@@ -13,11 +13,11 @@ router.get("/getAllprojects", ProjectControllers.getAllprojects);
 /*
 // get one project
 router.get("/getOneclients", ClientControllers.getOneclient);
-
+*/
 // update one project
-router.patch("/updateClient/:id", ClientControllers.updateClient);
+router.patch("/updateProject/:id", ProjectControllers.updateProject);
 
 // delete  project
-router.patch("/deleteClient/:id",ClientControllers.deleteclient)
-*/
+router.patch("/deleteProject/:id",ProjectControllers.deleteProject)
+
 module.exports=router;

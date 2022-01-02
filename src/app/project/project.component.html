@@ -52,9 +52,9 @@
                       <label for="projectinput5">Staus</label>
                       <select  [(ngModel)]="status" id="projectinput5" name="interested" class="form-control">
                         <option value="0" selected="" disabled="">waiting</option>
-                        <option value="2">In progress</option>
-                        <option value="3">finish</option>
-                        <option value="4">suspended</option>
+                        <option value="1">In progress</option>
+                        <option value="2">finish</option>
+                        <option value="3">suspended</option>
                         
                       </select>
                     </div>
@@ -112,7 +112,7 @@
         <div class="card-content">
           <div class="card-body">
             <div class="table-responsive">
-              <ng2-smart-table [settings]="settings" [source]="projects" 
+              <ng2-smart-table [settings]="settings" [source]="projects" (editConfirm)="onSaveConfirm($event)" (deleteConfirm)="onDeleteConfirm($event)"
               ></ng2-smart-table>            </div>
           </div>
         </div>

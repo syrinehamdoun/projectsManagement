@@ -28,6 +28,23 @@ export class ProjectService {
     });
   }
 
+  deleteProject(id:string,deleted) {
+    return this
+      .http
+      .patch(`${this.url}/api/projects/deleteProject/`+id,{deleted:deleted})
+      .subscribe(()=>{  
+        console.log("Deleted");  
+    }); 
+  }
+  updateProjects(id:string,updateProject) {
+    return this
+      .http
+      .patch(`${this.url}/api/projects/updateProject/`+id,{updateProject})
+      .subscribe(()=>{  
+        console.log("Updated");  
+    }); 
+  }
+
 
 }
 

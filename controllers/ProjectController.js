@@ -51,10 +51,7 @@ ProjectControllers.updateProject= async (req, res) => {
     try {
         await Project.findByIdAndUpdate(req.params.id, {
             $set: {
-              client : req.body.updateProject.client,
               description : req.body.updateProject.description,
-              remarque : req.body.updateProject.remarque,
-              type : req.body.updateProject.type,
               status : req.body.updateProject.status,
               date_debut : req.body.updateProject.date_debut,
               date_fin : req.body.updateProject.date_fin,            
