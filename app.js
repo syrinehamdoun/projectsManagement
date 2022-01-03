@@ -40,7 +40,7 @@ const taches=require('./routes/api/taches')
 const users=require('./routes/api/users')
 const clients=require('./routes/api/clients')
 const roles=require('./routes/api/roles')
-
+const projects=require('./routes/api/project')
 
 //is not good for secuirty,remplace with cors
 /*app.use(function(req, res, next) {
@@ -57,7 +57,7 @@ app.use('/api/taches',taches)
 app.use('/api/users',users)
 app.use('/api/clients',clients)
 app.use('/api/roles',roles)
-
+app.use('/api/projects',projects)
 
 app.all("*", (req, res, next) => {
     next(new Error(`Can't find ${req.originalUrl} on this server`, 404));

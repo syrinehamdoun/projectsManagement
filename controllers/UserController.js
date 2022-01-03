@@ -10,18 +10,25 @@ const UserControllers = {};
 UserControllers.addUser = async (req, res) => {
   // //avatar: req.file.path,
   console.log(req.body)
-  console.log(req.body.newUser.username)
+  //console.log(req.body.newUser.username)
   try {
     const hashedPassword = await bcrypt.hash(req.body.newUser.password, 10);
     const user = await new User({
       _id: mongoose.Types.ObjectId(),
       username: req.body.newUser.username,
-      email: req.body. newUser.email,
+      email: req.body.newUser.email,
       password: hashedPassword,
-      phone: req.body. newUser.phone,
+      phone: req.body.newUser.phone,
+      address: req.body.newUser.address,
+      city: req.body.newUser.city,
+      admin: req.body.newUser.admin,
+      state: req.body.newUser.state,
+      zip: req.body.newUser.zip,
+      country: req.body.newUser.country,
+      role: req.body.newUser.role,
     });
     /*
-    phone: req.body.phone,
+     
       address: req.body.address,
       city: req.body.city,
       admin: req.body.admin,
@@ -37,6 +44,26 @@ UserControllers.addUser = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+//Update user
+UserControllers.updateUser= async (req, res) => {
+  console.log(req.body)
+  const hashedPassword = await bcrypt.hash(req.body.newUser.password, 10);
+    try {
+        await Client.findByIdAndUpdate(req.params.id, {
+            $set: {
+              username: req.body.newUser.username,
+              email: req.body. newUser.email,
+              password: hashedPassword,
+              phone: req.body. newUser.phone, },
+          });
+        const client = await Client.findById(req.query.id);
+        res.status(201).json({ message: "New client being updated ✅", client });
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+};
+
 // GET all users
 UserControllers.getAllUsers = async (req, res) => {
 

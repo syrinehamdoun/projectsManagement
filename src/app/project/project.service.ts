@@ -1,47 +1,52 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ProjectService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
   constructor(private http: HttpClient,  private router: Router) { }
+
   url = 'http://localhost:5000';
-  getUsers() {
+  getProjects() {
     return this
       .http
-      .get(`${this.url}/api/users/`);
+      .get(`${this.url}/api/projects/getAllprojects`);
   }
-  addUsers(newUser){
-    console.log(newUser);
+  addProject(newProject){
     return this
       .http
-      .post(`${this.url}/api/users/register`,{newUser})     
+      .post(`${this.url}/api/projects/addProject`,{newProject})     
       .subscribe(()=>{  
         console.log("Added");  
     });
   }
-  deleteUsers(id:string,deleted) {
+
+  deleteProject(id:string,deleted) {
     return this
       .http
-      .patch(`${this.url}/api/users/deleteUser/`+id,{deleted:deleted})
+      .patch(`${this.url}/api/projects/deleteProject/`+id,{deleted:deleted})
       .subscribe(()=>{  
         console.log("Deleted");  
     }); 
   }
-  /*updateUsers(id:string,clientUpdated) {
+  updateProjects(id:string,updateProject) {
     return this
       .http
-      .patch(`${this.url}/api/users/updateClient/`+id,{clientUpdated})
+      .patch(`${this.url}/api/projects/updateProject/`+id,{updateProject})
       .subscribe(()=>{  
         console.log("Updated");  
     }); 
-  }*/
-  
+  }
+
+
 }
+
+
+
