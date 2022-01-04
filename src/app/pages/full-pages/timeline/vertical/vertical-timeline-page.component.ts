@@ -3,6 +3,7 @@ import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from "ng-chartist";
 import { PostService } from './posts.service';
 import { HttpClient } from '@angular/common/http';
+import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 declare var require: any;
 const data: any = require('../../../../shared/data/chartist.json');
@@ -26,7 +27,7 @@ export class VerticalTimelinePageComponent implements OnInit {
     posts:any;
     value: string;
 
-    constructor(private http: HttpClient,private postService: PostService) {
+    constructor(private http: HttpClient,private postService: PostService,private modalService: NgbModal) {
     }
 
     ngOnInit() {
@@ -50,5 +51,13 @@ export class VerticalTimelinePageComponent implements OnInit {
          
       }
  
+       // Open default modal
+    open(content) {
+        this.modalService.open(content).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+    }
 
 }
