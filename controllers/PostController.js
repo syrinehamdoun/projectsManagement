@@ -10,6 +10,7 @@ PostControllers.addPost = async (req, res) => {
   try {
     const post = await new Post({
         _id: mongoose.Types.ObjectId(),
+        title : req.body.title,
         description : req.body.description,
         date_creation : req.body.date_creation,
     });

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from "ng-chartist";
+import { PostService } from './posts.service';
+import { HttpClient } from '@angular/common/http';
 
 declare var require: any;
 const data: any = require('../../../../shared/data/chartist.json');
@@ -21,51 +23,32 @@ export interface Chart {
 
 export class VerticalTimelinePageComponent implements OnInit {
 
-    ngOnInit() {
-        
+    posts:any;
+    value: string;
+
+    constructor(private http: HttpClient,private postService: PostService) {
     }
 
-    // Google map lat-long
-    lat: number = 40.650002;
-    lng: number = -73.949997;
-
-    // Line with Area Chart 1 Starts
-    lineArea1: Chart = {
-        type: 'Line',
-        data: data['lineArea1'],
-        options: {
-            low: 0,
-            showArea: true,
-            fullWidth: true,
-            onlyInteger: true,
-            axisY: {
-                low: 0,
-                scaleMinSpace: 50,
-            },
-            axisX: {
-                showGrid: false
+    ngOnInit() {
+        this.postService.getPosts().subscribe(data => {
+          this.posts=data
+         /* for(var i=0 ;i< Object.keys(data).length;i++)
+          {
+            if (data[i].deleted==true) {
+              this.clients.splice(i);
             }
-        },
-        events: {
-            created(data: any): void {
-                var defs = data.svg.elem('defs');
-                defs.elem('linearGradient', {
-                    id: 'gradient',
-                    x1: 0,
-                    y1: 1,
-                    x2: 0,
-                    y2: 0
-                }).elem('stop', {
-                    offset: 0,
-                    'stop-color': 'rgba(255, 255, 255, 1)'
-                }).parent().elem('stop', {
-                    offset: 1,
-                    'stop-color': 'rgba(38, 198, 218, 1)'
-                });
-            },
+          }*/
+        //   this.filterSource = this.clients;
+        //   this.source = this.clients;
+        //   this.alertSource=this.clients; 
+        console.log(this.posts);       
+        });
+      }
 
-        },
-    };
-    // Line with Area Chart 1 Ends
+      public onComment() {
+        console.log(this.value);
+         
+      }
+ 
 
 }

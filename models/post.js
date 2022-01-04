@@ -4,6 +4,9 @@ const Schema=mongoose.Schema
 
 const PostShema= new Schema({
 	_id: Schema.Types.ObjectId,
+	title: {
+		type: String,
+	},	
 	description: {
 		type: String,
 	},	
