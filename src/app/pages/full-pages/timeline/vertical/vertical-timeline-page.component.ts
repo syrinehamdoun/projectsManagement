@@ -26,6 +26,7 @@ export class VerticalTimelinePageComponent implements OnInit {
 
     posts:any;
     value: string;
+    closeResult: string;
 
     constructor(private http: HttpClient,private postService: PostService,private modalService: NgbModal) {
     }
@@ -58,6 +59,16 @@ export class VerticalTimelinePageComponent implements OnInit {
         }, (reason) => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
+    }
+     // This function is used in open
+     private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
     }
 
 }
