@@ -11,6 +11,7 @@ const autoIncrement = require('mongoose-auto-increment');
 const app=express()
 const cors = require("cors");
 
+
 app.use(
   cors({
     origin: "http://localhost:4200",
@@ -33,10 +34,12 @@ app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static('uploads'));
 
 // Initializing Routes
 const items=require('./routes/api/items')
 const taches=require('./routes/api/taches')
+const posts=require('./routes/api/posts')
 const users=require('./routes/api/users')
 const clients=require('./routes/api/clients')
 const roles=require('./routes/api/roles')
@@ -54,6 +57,7 @@ const projects=require('./routes/api/project')
 //item is for testing
 app.use('/api/items',items)
 app.use('/api/taches',taches)
+app.use('/api/posts',posts)
 app.use('/api/users',users)
 app.use('/api/clients',clients)
 app.use('/api/roles',roles)
