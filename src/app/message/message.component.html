@@ -1,0 +1,22 @@
+<div class="panel message" [ngClass]="{'panel-info': message.mine, 'panel-warning': !message.mine}">
+  <div class="panel-body" [ngClass]="{mine: message.mine}">
+      <div *ngIf="!message.mine" class="avatar">
+        <img src="assets/img/generic-avatar.png" alt="avatar" height="57px" width="50px">
+      </div>
+
+      <div class="msg-text-container">
+        <!---<p class="list-group-item-heading">{{message.from}}</p>-->
+        <div class="chat-contentNotMine"*ngIf="!message.mine" style="background: rgb(156, 153, 153);">
+          <p >{{ message.text }}</p>
+        </div>
+        <div class="chat-content"*ngIf="message.mine" >
+          <p >{{ message.text }}</p>
+        </div>
+        <p  class="time" id="time" [ngClass]="{'fade-in': fadeTime}">• {{time}}</p>
+      </div>
+
+    <div *ngIf="message.mine" class="avatar">
+       <img src="assets/img/generic-avatar.png" alt="avatar" height="57px" width="50px">
+    </div>
+  </div>
+</div>

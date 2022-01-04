@@ -8,8 +8,10 @@ import { Full_ROUTES } from "./shared/routes/full-layout.routes";
 import { CONTENT_ROUTES } from "./shared/routes/content-layout.routes";
 
 import { AuthGuard } from './shared/auth/auth-guard.service';
+import { ChatComponent } from './chat/chat.component';
 
 const appRoutes: Routes = [
+
   {
     path: '',
     redirectTo: '/login',

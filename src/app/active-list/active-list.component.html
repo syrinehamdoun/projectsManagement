@@ -1,0 +1,37 @@
+  <div id="users-list" class="list-group position-relative">
+
+    <div class="users-list-padding">
+      <a class="list-group-item no-border" (click)="onUserClick('chat-room')" [ngClass]="{active: current == 'chat-room'}">
+        <span class="media">
+          <div class="media-body  text-left">
+            <h6 class="list-group-item-heading" style="color: #009DA0;">Chat Room for all
+            </h6>
+                </div>
+        </span>
+    </a>
+      <div *ngFor="let user of users">
+  
+      <a class="list-group-item no-border" (click)="onUserClick(user.username)" [ngClass]="{active: user.username == current, online: user.online}"    >
+  
+        <span class="media">
+          <span class="avatar avatar-md avatar-busy">
+            <img class="media-object d-flex mr-3 bg-primary height-50 rounded-circle" src="assets/img/portrait/small/avatar-s-4.png"
+              alt="Generic placeholder image">
+            <i></i>
+          </span>
+          <div class="media-body  text-left">
+            <h6 class="list-group-item-heading">{{user.username}}
+              <span *ngIf="user.online"class="font-small-3 float-right primary">connect</span>
+            </h6>
+            <!--<p class="list-group-item-text text-muted">
+              <i class="ft-check font-small-2"></i> I love you </p>-->
+          </div>
+        </span>
+      
+      </a>
+    </div>
+    </div>
+  
+
+
+

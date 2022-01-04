@@ -147,7 +147,10 @@ UserControllers.getOneUser = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
-
+UserControllers.getUserByUsername =function(username, callback) {
+  let query = {username: username};
+  User.findOne(query, callback);
+}
 UserControllers.getDate = async (req, res) => {
   res.status(200).json("welcome to leader");
 };

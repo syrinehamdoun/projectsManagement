@@ -7,29 +7,20 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
-import { ChatRoutingModule } from "./chat-routing.module";
 
-import { ChatComponent } from "./chat.component";
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { ActiveListModule } from 'app/active-list/active-list.module';
-import { MessageModule } from 'app/message/message.module';
+import { ChatInboxComponent } from "./chat-inbox.component";
 
 @NgModule({
     imports: [
         CommonModule,
-        ChatRoutingModule,
         VgCoreModule,
         VgControlsModule,
         VgOverlayPlayModule,
         VgBufferingModule,
-        PerfectScrollbarModule,
-        FormsModule,
-        ActiveListModule,
-        MessageModule,
-        ReactiveFormsModule
+        PerfectScrollbarModule
     ],
     declarations: [
-        ChatComponent,
+        ChatInboxComponent
     ]
 })
-export class ChatModule { }
+export class ChatInboxModule { }

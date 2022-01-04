@@ -19,7 +19,6 @@ const  httpOptions = {
 export class LoginService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
- 
   constructor(private http: HttpClient,  private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -31,7 +30,9 @@ export class LoginService {
   
   url = 'http://localhost:5000'
   result;
-  
+  private authToken: string;
+  private user: string;
+
   loginUser(login: { userName: string; password: string; }) {
     
     console.log("Service Login"+login)
@@ -68,10 +69,26 @@ export class LoginService {
 
   logout() {
   // remove user from local storage and set current user to null
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+  this.authToken = null;
+  this.user = null;
+  localStorage.clear();
+      this.currentUserSubject.next(null);
    
   
+  }
+  getUserData(): any {
+    this.loadCredentials();
+    let jUser = JSON.parse(localStorage.getItem('currentUser'));
+    let jData = { token: this.authToken, user: jUser };
+
+    return jData;
+  }
+
+  loadCredentials(): void {
+    let token = JSON.parse(localStorage.getItem('currentUser')).token;
+    let user = localStorage.getItem('currentUser');
+    this.authToken = token;
+    this.user = user;
   }
 
 

@@ -112,7 +112,32 @@ $sideber-border: #E4E7ED;
         }
       }
     }
+    .chat-contentNotMine {
+      &:before {
+        position: absolute;
+        top: 10px;
+        right: -10px;
+        width: 0;
+        height: 0;
+        content: '';
+        border: 5px solid transparent;
+      }
+      text-align: right;
+      position: relative;
+      display: block;
+      float: right;
+      padding: 8px 15px;
+      margin: 0 20px 10px 0;
+      clear: both;
+      color: #fff;
+      background-color: theme-color('primary');
+      border-radius: 4px;
 
+      p {
+        margin: 0;
+      }
+    }
+  
     .chat-avatar {
       float: right;
 

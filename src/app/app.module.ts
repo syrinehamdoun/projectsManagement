@@ -11,7 +11,7 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { StoreModule } from "@ngrx/store";
 import { LoginModule } from "./login/login.module";
-
+import { FormsModule } from '@angular/forms';
 import { 
   PerfectScrollbarModule, 
   PERFECT_SCROLLBAR_CONFIG, 
@@ -27,7 +27,10 @@ import { FullLayoutComponent } from "./layouts/full/full-layout.component";
 import { DragulaService } from "ng2-dragula";
 import { AuthService } from "./shared/auth/auth.service";
 import { AuthGuard } from "./shared/auth/auth-guard.service";
-
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ActiveListComponent } from './active-list/active-list.component';
+import { MessageComponent } from './message/message.component';
+const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false
@@ -48,7 +51,8 @@ export function createTranslateLoader(http: HttpClient) {
     LoginModule,
     ToastrModule.forRoot(),
     NgbModule.forRoot(),
-
+    SocketIoModule.forRoot(config),
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
