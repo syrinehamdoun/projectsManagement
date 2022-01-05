@@ -34,7 +34,7 @@
         <div class="chat" *ngIf="messageList">
           <div class="chat-avatar">
             <a class="avatar" data-toggle="tooltip" data-placement="right" title="" data-original-title="">
-              <img src="assets/img/portrait/small/avatar-s-1.png" class="width-50" alt="avatar" />
+              <img src="../../assets/img/generic-avatar.png" class="width-50" alt="avatar" />
             </a>
           </div>
           <div class="chat-body">
@@ -52,8 +52,8 @@
         <div class="form-control-position">
           <i class="icon-emoticon-smile"></i>
         </div>
-        <input type="text" class="form-control"id="message"
-        name="message" id="iconLeft4" placeholder="Type your message" [(ngModel)]="sendMessage" (keydown.enter)="onSendSubmit(sendMessage);$event.preventDefault()">
+        <input type="text" class="form-control" #messageInput
+        name="message" placeholder="Type your message" [(ngModel)]="sendMessage" (keydown.enter)="onSendSubmit(sendMessage);$event.preventDefault()">
         <div class="form-control-position control-position-right">
           <i class="ft-image mr-1"></i>
         </div>
@@ -70,3 +70,7 @@
 
   
   
+<audio id="notifSound"><source src="../../app/chat/assets/audio/notification.mp3" type="audio/mpeg"></audio>
+  <audio id="msgSound" ><source src="../../app/chat/assets/audio/notification.mp3" type="audio/mpeg">
+  
+  </audio>

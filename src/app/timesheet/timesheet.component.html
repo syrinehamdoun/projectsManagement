@@ -30,16 +30,10 @@
 
                 <div class="form-group">
                   <label for="timesheetinput2">Project Name</label>
-                  <div class="position-relative has-icon-left">
-                    <input type="text" id="timesheetinput2" class="form-control" [(ngModel)]="projectname"name="projectname">
-                    <select  [(ngModel)]="client" id="projectinput6" name="Client" class="form-control">
-                      <option [value]="proj.description" *ngFor="let proj of projects">{{proj.description}} <i class="fa fa-briefcase"></i> </option>    
-                                   
-
-
-                  </select>
-                  <i class="fa fa-briefcase"></i>
-
+                  <div class="position-relative"> 
+                    <select  [(ngModel)]="project" id="timesheetinput2" [(ngModel)]="project"name="project" class="form-control">
+                     <option [value]="proj['_id']" *ngFor="let proj of projects">{{proj.description}} </option>    
+                  </select> 
                     <div class="form-control-position">
                     </div>
                   </div>
@@ -91,10 +85,10 @@
               </div>
 
               <div class="form-actions right">
-                <button type="button" class="btn btn-raised btn-warning mr-1">
+                <button type="button" (click)="onCancel()" class="btn btn-raised btn-warning mr-1">
                   <i class="ft-x"></i> Cancel
                 </button>
-                <button type="button" class="btn btn-raised btn-primary">
+                <button (click)="onSubmit()"type="button" class="btn btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>
               </div>

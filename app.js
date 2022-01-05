@@ -53,14 +53,15 @@ const clients=require('./routes/api/clients')
 const roles=require('./routes/api/roles')
 const messages=require('./routes/api/message')
 const projects=require('./routes/api/project')
+const timesheets=require('./routes/api/timesheet')
 
 //is not good for secuirty,remplace with cors
-/*app.use(function(req, res, next) {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
-});*/
+});
 // use routes
 
 //item is for testing
@@ -71,6 +72,7 @@ app.use('/api/users',users)
 app.use('/api/clients',clients)
 app.use('/api/messages',messages)
 app.use('/api/projects',projects)
+app.use('/api/timesheets',timesheets)
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

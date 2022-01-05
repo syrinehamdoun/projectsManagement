@@ -19,6 +19,7 @@ export class ChatService {
 
     userList:any;
     constructor(public http: HttpClient,public authService: LoginService,private socket: Socket,private userService: UserService) { }
+     username=JSON.parse(localStorage.getItem('currentUser')).userName;
     connect(username: string, callback: Function = () => {}): void {
         // initialize the connection
         this.socket = io(environment.chatUrl, { path: environment.chatPath });
@@ -30,6 +31,7 @@ export class ChatService {
         });
     
         this.socket.on('connect', () => {
+          console.log('im connected ',username)
           this.sendUser(username);
           console.log('connected to the chat server');
           callback();
@@ -58,6 +60,7 @@ export class ChatService {
       receiveActiveList(): any {
         let observable = new Observable(observer => {
           this.socket.on('active', data => {
+            console.log(data);
             observer.next(data);
           });
         });

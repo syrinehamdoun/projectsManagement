@@ -74,6 +74,7 @@ const initialize = server => {
         data.to,
         data.message.text
       );
+      
 
       // save the message to the database
       let message = new Message(data.message);
@@ -82,8 +83,6 @@ const initialize = server => {
 
     socket.on('disconnect', () => {
       console.log(socket);
-
-      console.log('*******',socket.username)
 
       let instances = searchConnections(socket.username);
       if (instances.length == 1) {

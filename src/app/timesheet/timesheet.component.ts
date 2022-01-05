@@ -13,26 +13,14 @@ export class TimesheetComponent {
   constructor(private http: HttpClient,private clientService: ClientService ,private timesheetService: TimesheetService,private projectService: ProjectService) {
   }
   employee: any;
-  projectname: any;
+  project: any;
   date: any;
-  clients: any ;
   projects: any ;
   starttime:any;
   description:any ;
   endtime:any;
   ngOnInit() {
     this.employee=JSON.parse(localStorage.getItem('currentUser')).userName;
-    this.clientService.getClients().subscribe(data => {
-      this.clients=data
-      for(var i=0 ;i< Object.keys(data).length;i++)
-      {
-        if (data[i].deleted==true) {
-          this.clients.splice(i);
-        }
-      }
-       
-           
-    });
     this.projectService.getProjects().subscribe(data => {
       this.projects=data
       for(var i=0 ;i< Object.keys(data).length;i++)
@@ -43,5 +31,27 @@ export class TimesheetComponent {
       }       
            
     });
+}
+onCancel(){
+  this.project='';
+  this.description='';
+  this.date='';
+  this.endtime='';
+  this.starttime='';
+  this.ngOnInit();
+  
+}
+onSubmit(){
+  this.timesheetService.addTimesheet({employee:this.employee,project:this.project,description:this.description,
+    date:this.date,endtime:this.endtime,starttime:this.starttime,
+  })
+
+  /*this.project='';
+  this.description='';
+  this.date='';
+  this.endtime='';
+  this.starttime='';*/
+  this.ngOnInit();
+  
 }
 }

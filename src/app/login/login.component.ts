@@ -2,7 +2,7 @@ import { LoginService } from './login.service';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
-
+import {ChatService} from   'app/chat/chat.service'
 import { Login } from './login';
 @Component({
     selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent  {
 
     @ViewChild('f', {static: false}) loginForm: NgForm;
 
-    constructor(private router: Router,private LoginService: LoginService,
+    constructor(private router: Router,private LoginService: LoginService,private chatService:ChatService,
         private route: ActivatedRoute) { }
         userName: string=''
         password: string=''
@@ -34,7 +34,8 @@ export class LoginComponent  {
        
         //this.loginForm.reset();
             const  result=this.LoginService.loginUser(login)
-           
+        this.chatService.connect(login.userName);
+        this.router.navigate(['/chat']);
         
     }
     // On Forgot password link click

@@ -154,7 +154,7 @@ if (this.messageInputRef.nativeElement.value != "") {
   }
 
 }*/
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -176,7 +176,7 @@ import { UserService } from 'app/user/user.service';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   messageList: Message[];
-  userList: Array<any>;
+  userList= new Array();
   showActive: boolean;
   sendForm: FormGroup;
   username: string;
@@ -188,15 +188,30 @@ export class ChatComponent implements OnInit, OnDestroy {
   conversationId: string;
   notify: boolean;
   notification: any = { timeout: null };
-  activeChatUser:String;
+  activeChatUser:any;
+  activeChatUserImg:any;
+  @ViewChild('messageInput', {static: false}) messageInputRef: ElementRef;
+
   constructor(
     public route: ActivatedRoute,
     public router: Router,
     public formBuilder: FormBuilder,
     public el: ElementRef,
     public authService: LoginService,
-    public chatService: ChatService
-  ) {}
+    public chatService: ChatService,
+    public userService: UserService,
+    private elRef: ElementRef
+  ) {   
+     this.userService.getUsers().subscribe(data => {
+    console.log(data)
+      for(var i=0 ;i< Object.keys(data).length;i++)
+      {
+        this.userList.push(data[i]);
+      }
+      this.activeChatUser =this.userList[0].username;
+
+    });
+      this.activeChatUserImg = "../../assets/img/generic-avatar.png";}
 
   ngOnInit() {
     let userData = this.authService.getUserData();
@@ -243,7 +258,7 @@ export class ChatComponent implements OnInit, OnDestroy {
           }
           this.noMsg = false;
           this.messageList = messages;
-          this.scrollToBottom();
+         // this.scrollToBottom();
         } else {
           this.noMsg = true;
           this.messageList = [];
@@ -325,7 +340,7 @@ console.log(this.userList)
         if (message.conversationId == this.conversationId) {
           this.noMsg = false;
           this.messageList.push(message);
-          this.scrollToBottom();
+         // this.scrollToBottom();
           this.msgSound();
         } else if (message.mine != true) {
           if (this.notification.timeout) {
@@ -345,7 +360,8 @@ console.log(this.userList)
       });
   }
   onSendSubmit(sendMessage): void {
-    let newMessage: Message = {
+    if(this.messageInputRef.nativeElement.value!="")
+   { let newMessage: Message = {
       created: new Date(),
       from: this.username,
       text: sendMessage,
@@ -357,9 +373,13 @@ console.log(this.userList)
     newMessage.mine = true;
     this.noMsg = false;
     this.messageList.push(newMessage);
-    this.scrollToBottom();
+    //this.scrollToBottom();
+    
+    this.messageInputRef.nativeElement.value = "";
+    this.messageInputRef.nativeElement.focus();
+    this.onNewConv(this.activeChatUser)
     this.msgSound();
-    this.sendForm.setValue({ message: '' });
+  }
   }
 
   checkMine(message: Message): void {
@@ -395,12 +415,12 @@ console.log(this.userList)
     sound.play();
   }
 
-  scrollToBottom(): void {
+  /*scrollToBottom(): void {
     let element: any = this.el.nativeElement.querySelector('.msg-container');
     setTimeout(() => {
       element.scrollTop = element.scrollHeight;
     }, 100);
-  }
+  }*/
 
   checkOnline(name: string): boolean {
     if (name == 'chat-room') {
