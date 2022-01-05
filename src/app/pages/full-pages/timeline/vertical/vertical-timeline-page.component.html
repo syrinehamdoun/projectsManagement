@@ -11,7 +11,7 @@
   <ul class="timeline"  >
     <li class="timeline-line"></li>
     <li class="timeline-group">
-      <a class="btn btn-raised btn-primary"><i class="fa fa-plus"></i> Ajouter</a>
+      <button class="btn btn-raised btn-primary" (click)="open(content)"><i class="fa fa-plus"></i>Ajouter</button>
     </li>
   </ul>
   <ul class="timeline" >
@@ -58,7 +58,7 @@
               <form>
                 <fieldset class="form-group position-relative has-icon-left mb-0">
                   
-                  <input type="text"  [(ngModel)]="value" class="form-control" placeholder="Write comments...">
+                  <input type="text"  [(ngModel)]="commenttext" id="commenttext"  class="form-control" placeholder="Write comments...">
                   <div class="form-control-position">
                     <i class="fa fa-dashcube"></i>
                   </div>
@@ -76,4 +76,38 @@
   </ul>
  
 </section>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajouter Post</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Title</label>
+        <div class="input-group">
+          <input id="title" class="form-control" [(ngModel)]="title"  placeholder="title" name="title" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dateOfBirth">description</label>
+        <div class="input-group">
+          <textarea id="description"  [(ngModel)]="description"  class="form-control" placeholder="description" name="description" ></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+
+
+<hr>
+
+<pre>{{ closeResult }}</pre>
 <!--Vertical Timeline Ends-->

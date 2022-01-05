@@ -3,6 +3,8 @@ import * as Chartist from 'chartist';
 import { ChartType, ChartEvent } from "ng-chartist";
 import { PostService } from './posts.service';
 import { HttpClient } from '@angular/common/http';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 declare var require: any;
 const data: any = require('../../../../shared/data/chartist.json');
@@ -15,6 +17,7 @@ export interface Chart {
     events?: ChartEvent;
 }
 
+
 @Component({
     selector: 'app-vertical-timeline-page',
     templateUrl: './vertical-timeline-page.component.html',
@@ -22,11 +25,34 @@ export interface Chart {
 })
 
 export class VerticalTimelinePageComponent implements OnInit {
-
+  closeResult = '';
     posts:any;
-    value: string;
+    commenttext: string;
+    title: string;
+    description :string;
 
-    constructor(private http: HttpClient,private postService: PostService) {
+    constructor(private http: HttpClient,private postService: PostService,private modalService: NgbModal) {
+    }
+
+    open(content) {
+      this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+        alert(this.title)
+        this.postService.addPosts(this.title ,this.description)
+        this.closeResult = `Closed with: ${result}`;
+        this.ngOnInit()
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return `with: ${reason}`;
+      }
     }
 
     ngOnInit() {
@@ -44,11 +70,9 @@ export class VerticalTimelinePageComponent implements OnInit {
         console.log(this.posts);       
         });
       }
-
+     
       public onComment() {
-        console.log(this.value);
+        alert(this.commenttext)
          
       }
- 
-
 }
