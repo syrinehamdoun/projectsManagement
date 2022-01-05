@@ -21,7 +21,7 @@
                 <div class="form-group">
                   <label for="timesheetinput1">Employee Name</label>
                   <div class="position-relative has-icon-left">
-                    <input type="text" id="timesheetinput1" class="form-control" name="employeename">
+                    <input type="text" id="timesheetinput1" class="form-control"[(ngModel)]="employee" name="employeename" disabled>
                     <div class="form-control-position">
                       <i class="ft-user"></i>
                     </div>
@@ -31,9 +31,16 @@
                 <div class="form-group">
                   <label for="timesheetinput2">Project Name</label>
                   <div class="position-relative has-icon-left">
-                    <input type="text" id="timesheetinput2" class="form-control" name="projectname">
+                    <input type="text" id="timesheetinput2" class="form-control" [(ngModel)]="projectname"name="projectname">
+                    <select  [(ngModel)]="client" id="projectinput6" name="Client" class="form-control">
+                      <option [value]="proj.description" *ngFor="let proj of projects">{{proj.description}} <i class="fa fa-briefcase"></i> </option>    
+                                   
+
+
+                  </select>
+                  <i class="fa fa-briefcase"></i>
+
                     <div class="form-control-position">
-                      <i class="fa fa-briefcase"></i>
                     </div>
                   </div>
                 </div>
@@ -41,7 +48,7 @@
                 <div class="form-group">
                   <label for="timesheetinput3">Date</label>
                   <div class="position-relative has-icon-left">
-                    <input type="date" id="timesheetinput3" class="form-control" name="date">
+                    <input type="date" id="timesheetinput3" class="form-control" [(ngModel)]="date"name="date">
                     <div class="form-control-position">
                       <i class="ft-message-square"></i>
                     </div>
@@ -52,7 +59,7 @@
                     <div class="form-group">
                       <label for="timesheetinput5">Start Time</label>
                       <div class="position-relative has-icon-left">
-                        <input type="time" id="timesheetinput5" class="form-control" name="starttime">
+                        <input type="time" id="timesheetinput5" class="form-control" [(ngModel)]="starttime"name="starttime">
                         <div class="form-control-position">
                           <i class="ft-clock"></i>
                         </div>
@@ -63,7 +70,7 @@
                     <div class="form-group">
                       <label for="timesheetinput6">End Time</label>
                       <div class="position-relative has-icon-left">
-                        <input type="time" id="timesheetinput6" class="form-control" name="endtime">
+                        <input type="time" id="timesheetinput6" class="form-control" [(ngModel)]="endtime"name="endtime">
                         <div class="form-control-position">
                           <i class="ft-clock"></i>
                         </div>
@@ -73,9 +80,9 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="timesheetinput7">Notes</label>
+                  <label for="timesheetinput7">Task Description</label>
                   <div class="position-relative has-icon-left">
-                    <textarea id="timesheetinput7" rows="5" class="form-control" name="notes"></textarea>
+                    <textarea id="timesheetinput7" rows="5" class="form-control" [(ngModel)]="description" name="description"></textarea>
                     <div class="form-control-position">
                       <i class="ft-file"></i>
                     </div>

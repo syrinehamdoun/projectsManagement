@@ -1,3 +1,4 @@
+import { value } from './../shared/data/dropdowns';
 import { UserService } from './user.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
@@ -32,14 +33,12 @@ export class UserComponent implements OnInit {
       username: {
         title: 'User Name',
       },
+     
       email: {
         title: 'Email',
       },
       phone: {
         title: 'phone',
-      },
-      password: {
-        title: 'Password',
       },
     },
   };
@@ -47,29 +46,57 @@ source: any;
 filterSource: any;
 alertSource: any;
 Users: any ;
+userName:any ;
+userLastName:any;
+userEmail:any;
+userWork:any;
+userStreet:any;
+userCity:any;
+userState:any;
+userZip:any;
+userPhone:any;
+userPassword:any;
+userConfirmPassword:any;
+userCountry:any;
+
+
 
 
   constructor(private http: HttpClient,private UserService: UserService) { }
+
+ 
   filtersettings = tableData.filtersettings;
   alertsettings = tableData.alertsettings;
   street: string=''
-  ngOnInit() {
+  loadData(){
     this.UserService.getUsers().subscribe(data => {
-    console.log(data)
-      this.Users=data
-     /* for(var i=0 ;i< Object.keys(data).length;i++)
-      {
-        if (data[i].deleted==true) {
-          this.clients.splice(i);
-        }
-      }*/
-      this.filterSource = this.Users;
-      this.source = this.Users;
-      this.alertSource=this.Users;  
-    });
+      console.log(data)
+        this.Users=data
+       /* for(var i=0 ;i< Object.keys(data).length;i++)
+        {
+          if (data[i].deleted==true) {
+            this.clients.splice(i);
+          }
+        }*/
+        this.filterSource = this.Users;
+        this.source = this.Users;
+        this.alertSource=this.Users;  
+      });
   }
+  ngOnInit() {
+    //this.lastname.value="emna";
+    this.loadData();
+   
+  }
+
+  
   onSubmit(){
-    alert(this.street)
+    this.UserService.addUsers({username:this.userName,email: this.userEmail,
+      phone: this.userPhone, password:this.userPassword,city:this.userCity,admin:0,state:this.userState,
+      zip:this.userZip,country:this.userCountry,role:parseInt(this.userWork)
+    });
+    this.loadData();
+    console.log({username:this.userName,email: this.userEmail,phone: this.userPhone, password:this.userLastName});
   }
 
 
@@ -138,6 +165,7 @@ Users: any ;
           event.confirm.resolve(event.newData);
           //event.newData.phone=parseInt(event.newData.phone);
           console.log( event.newData)
+          
          this.UserService.addUsers(event.newData);
       } else {
           event.confirm.reject();

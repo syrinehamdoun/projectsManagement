@@ -1,11 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { id } from '@swimlane/ngx-charts/release/utils';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+
+export class PostService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -13,35 +16,33 @@ export class UserService {
   }
   constructor(private http: HttpClient,  private router: Router) { }
   url = 'http://localhost:5000';
-  getUsers() {
+  getPosts() {
     return this
       .http
-      .get(`${this.url}/api/users/`);
+      .get(`${this.url}/api/posts/getAllposts`);
   }
-  addUsers(newUser){
-    console.log(newUser);
+  addPosts(newPost){
     return this
       .http
-      .post(`${this.url}/api/users/register`,{newUser})     
+      .post(`${this.url}/api/posts/addPost`,{newPost})     
       .subscribe(()=>{  
         console.log("Added");  
     });
   }
-  deleteUsers(id:string,deleted) {
+  deletePosts(id:string,deleted) {
     return this
       .http
-      .patch(`${this.url}/api/users/deleteUser/`+id,{deleted:deleted})
+      .patch(`${this.url}/api/posts/deletepost/`+id,{deleted:deleted})
       .subscribe(()=>{  
         console.log("Deleted");  
     }); 
   }
-  /*updateUsers(id:string,clientUpdated) {
+  updatePosts(id:string,postUpdated) {
     return this
       .http
-      .patch(`${this.url}/api/users/updateClient/`+id,{clientUpdated})
+      .patch(`${this.url}/api/posts/UpdatePost/`+id,{postUpdated})
       .subscribe(()=>{  
         console.log("Updated");  
     }); 
-  }*/
-  
+  }
 }

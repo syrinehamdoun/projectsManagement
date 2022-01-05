@@ -17,6 +17,8 @@ const server = http.Server(app);
 
   connectMongo();
   io(server);
+
+
 app.use(
   cors({
     origin: "http://localhost:4200",
@@ -40,21 +42,35 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static('uploads'));
 
 // Initializing Routes
 const items=require('./routes/api/items')
 const taches=require('./routes/api/taches')
+const posts=require('./routes/api/posts')
 const users=require('./routes/api/users')
 const clients=require('./routes/api/clients')
 const roles=require('./routes/api/roles')
 const messages=require('./routes/api/message')
+const projects=require('./routes/api/project')
+
+//is not good for secuirty,remplace with cors
+/*app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});*/
+// use routes
 
 //item is for testing
 app.use('/api/items',items)
 app.use('/api/taches',taches)
+app.use('/api/posts',posts)
 app.use('/api/users',users)
 app.use('/api/clients',clients)
 app.use('/api/messages',messages)
+app.use('/api/projects',projects)
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
