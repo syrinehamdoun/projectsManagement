@@ -43,6 +43,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/uploads', express.static('uploads'));
+app.use(express.static(process.cwd()+"/dist/"));
 
 // Initializing Routes
 const items=require('./routes/api/items')
