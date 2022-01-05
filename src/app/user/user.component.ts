@@ -91,7 +91,7 @@ userCountry:any;
 
   
   onSubmit(){
-    this.UserService.addUsers({username:this.userName,email: this.userEmail,
+    this.UserService.addUsers({username:this.userName+' '+this.userLastName,email: this.userEmail,
       phone: this.userPhone, password:this.userPassword,city:this.userCity,admin:0,state:this.userState,
       zip:this.userZip,country:this.userCountry,role:parseInt(this.userWork)
     });
