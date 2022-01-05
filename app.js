@@ -21,7 +21,7 @@ const server = http.Server(app);
 
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: '*',
     methods: ["GET", "POST","PATCH"],
     credentials: true,
   })
