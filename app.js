@@ -30,7 +30,7 @@ app.use(
 app.use(
   session({
     key: "token",
-    secret: process.env.TOKEN_TEXT,
+    secret: 'project',
     resave: false,
     saveUninitialized: false,
   })
