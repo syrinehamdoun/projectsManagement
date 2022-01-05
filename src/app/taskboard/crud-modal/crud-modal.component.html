@@ -24,10 +24,15 @@
         </div>
       </fieldset>
       <fieldset class="form-group position-relative has-icon-left">
-    
-        <input type="text" [formControl]="myForm.controls['createdBy']" formControlName="createdBy" class="form-control" id="todocreatedBy"
-        placeholder="createdBy" (keydown.enter)="$event.preventDefault()" required #todocreatedBy>
-      <div class="form-control-position control-position-right">
+        <select  [formControl]="myForm.controls['createdBy']"  formControlName="createdBy" class="form-control" id="todocreatedBy" (keydown.enter)="$event.preventDefault()" required #todocreatedBy>
+          <option [value]="option['_id']" *ngFor="let option of users">{{option['username']}}</option>
+
+      </select>
+       
+      
+      
+      
+        <div class="form-control-position control-position-right">
         <i class="ft-user"></i>
       </div>
     </fieldset>
@@ -49,9 +54,10 @@
     </div>
   </fieldset>
   <fieldset class="form-group position-relative has-icon-left">
+    <select [formControl]="myForm.controls['assignedTo']" formControlName="assignedTo" class="form-control" id="todoassignedTo" (keydown.enter)="$event.preventDefault()" required #todoassignedTo>
+      <option [value]="option['_id']" *ngFor="let option of usersto">{{option['username']}}</option>
+  </select>  
     
-    <input type="text" [formControl]="myForm.controls['assignedTo']" formControlName="assignedTo" class="form-control" id="todoassignedTo"
-    placeholder="assigned To" (keydown.enter)="$event.preventDefault()" required #todoassignedTo>
   <div class="form-control-position control-position-right">
     <i class="ft-user"></i>
   </div>

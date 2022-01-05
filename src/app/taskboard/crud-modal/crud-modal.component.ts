@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'app/user/user.service';
 
 @Component({
   selector: 'app-crud-modal',
@@ -13,7 +14,10 @@ export class CrudModalComponent implements OnInit{
   @Input() id: number;
   @Input() data: {};
   myForm: FormGroup;
+  users: any ;
+  usersto :any;
   constructor(
+    private userService: UserService,
    public activeModal: NgbActiveModal,
    private formBuilder: FormBuilder
   ) {
@@ -21,6 +25,11 @@ export class CrudModalComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.userService.getUsers().subscribe(data => {
+      this.users=data;
+      this.usersto=data;
+    
+    });
     this.buildItemForm(this.data);
     if(this.id === 0) {
       this.ModalTitle = "Add Task";

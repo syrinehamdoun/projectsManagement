@@ -14,11 +14,20 @@ router.get("/getAlltaches", TacheControllers.getAlltaches);
 // get one tasks
 router.get("/getOnetaches", TacheControllers.getOnetache);
 
-// get one tasks
-router.put("/updateStatusTache", TacheControllers.UpdateStatustache);
+
+// update one tache
+router.patch("/UpdateStatustache/:id", TacheControllers.UpdateStatustache);
+
+
+// update one tache
+router.patch("/updateTache/:id", TacheControllers.updateTache);
+
+
 
 // delete  tasks
-router.delete("/deletetache", TacheControllers.deletetache);
+router.patch("/deletetache/:id",TacheControllers.deletetache)
+
+//router.delete("/deletetache", TacheControllers.deletetache);
 
 
 
