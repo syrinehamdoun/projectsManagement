@@ -12,8 +12,6 @@
 </div>
 <!-- Taskboard Starts -->
 <section id="taskboard">
-
-
   <div class="row">
     <div class="col-md-3 col-12">
       <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ft-list mr-1 float-left"></i> To Dos</h4>
@@ -30,7 +28,7 @@
               </div>
               <p>{{todo.taskMessage}}</p>
               <h4>{{backLog.assignedTo}}</h4>
-              <img [src]="[todo.assignedTo]" class="rounded-circle width-50 mr-2"> <span class="primary">{{todo.createdOn}}</span>
+              <img src="assets/img/portrait/small/avatar-s-1.png" class="rounded-circle width-50 mr-2"> <span class="primary">{{todo.createdOn}}</span>
             </div>
           </div>
         </div>
@@ -51,7 +49,7 @@
               </div>
               <p>{{inProcess.taskMessage}}</p>
               <h4>{{backLog.assignedTo}}</h4>
-              <img [src]="[inProcess.assignedTo]" class="rounded-circle width-50 mr-2"> <span class="info">{{inProcess.createdOn}}</span>
+              <img src="assets/img/portrait/small/avatar-s-1.png" class="rounded-circle width-50 mr-2"> <span class="info">{{inProcess.createdOn}}</span>
             </div>
           </div>
         </div>
@@ -73,7 +71,7 @@
               </div>
               <p>{{completed.taskMessage}}</p>
               <h4>{{backLog.assignedTo}}</h4>
-              <img [src]="[completed.assignedTo]" class="rounded-circle width-50 mr-2"> <span class="success">{{completed.createdOn}}</span>
+              <img src="assets/img/portrait/small/avatar-s-1.png" class="rounded-circle width-50 mr-2"> <span class="success">{{completed.createdOn}}</span>
             </div>
           </div>
         </div>
@@ -94,8 +92,9 @@
                 </div>
               </div>
               <p>{{backLog.taskMessage}}</p>
-              <h4>{{backLog.assignedTo}}</h4>
-             <span class="warning">{{backLog.createdOn}}</span>
+              
+              <img src="assets/img/portrait/small/avatar-s-1.png" class="rounded-circle width-50 mr-2"> <span class="success">{{backLog.createdOn}}</span>
+            
             </div>
           </div>
         </div>

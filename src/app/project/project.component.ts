@@ -99,9 +99,12 @@ export class ProjectComponent {
         data[i].status="In progress";
       }else if(data[i].status==2){
         data[i].status="finish";
-      }else{
+      }else if(data[i].status==3){
         data[i].status="suspended";
       }
+      data[i].date_fin=new Date(data[i].date_fin).toDateString();
+      data[i].date_debut=new Date(data[i].date_debut).toDateString();
+      
     }
      this.projects=data
     this.filterSource = this.projects;
@@ -158,7 +161,8 @@ export class ProjectComponent {
       if (window.confirm('Are you sure you want to save?')) {
         event.confirm.resolve(event.newData);
         event.newData.status=parseInt(event.newData.status);
-        this.projectService.updateProjects(event.data._id,event.newData);           
+        this.projectService.updateProjects(event.data._id,event.newData);
+        this.ngOnInit() ;
       } else {
           event.confirm.reject();
       }

@@ -1,5 +1,7 @@
+
 export class Task {
     public taskId: number;
+    public id :string;
     public taskTitle: string;
     public taskMessage: string;
     public createdOn: string;
@@ -8,7 +10,7 @@ export class Task {
     public assignedTo: string;
     public status: string;
   
-    constructor(taskId: number, taskTitle: string, taskMessage:string, createdOn: string, createdBy: string,deadline: string, assignedTo: string, status: string) {
+    constructor(taskId: number, taskTitle: string,id:string , taskMessage:string, createdOn: string, createdBy: string,deadline: string, assignedTo: string, status: string) {
       this.taskId = taskId;
       this.taskTitle = taskTitle;
       this.taskMessage = taskMessage;
@@ -17,6 +19,7 @@ export class Task {
       this.deadline=deadline;
       this.assignedTo = assignedTo;
       this.status = status;
+      this.id = id;
     }
   }
   
