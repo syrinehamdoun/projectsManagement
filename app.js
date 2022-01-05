@@ -97,7 +97,7 @@ io.on('connection', (socket) => {
 io.on('new-message', (message) => {
   io.emit(message);
 });*/
-server.listen(8080, err => {
+server.listen(process.env.PORT || 5000, err => {
   if (err) {
     log.err('server', 'could not start listening', err.message || err);
     process.exit();
