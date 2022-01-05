@@ -21,10 +21,10 @@ export class PostService {
       .http
       .get(`${this.url}/api/posts/getAllposts`);
   }
-  addPosts(newPost){
+  addPosts(title:string ,description:string){
     return this
       .http
-      .post(`${this.url}/api/posts/addPost`,{newPost})     
+      .post(`${this.url}/api/posts/addPost`,{title:title ,description:description})     
       .subscribe(()=>{  
         console.log("Added");  
     });
