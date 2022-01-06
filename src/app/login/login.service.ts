@@ -28,7 +28,7 @@ export class LoginService {
     return this.currentUserSubject.value;
   }
   
-  url = 'http://localhost:5000'
+  url = 'https://projects-management-itbs.herokuapp.com'
   result;
   private authToken: string;
   private user: string;

@@ -4,18 +4,18 @@ const UserControllers = require("../../controllers/UserController");
 const middleware = require("../../middlewares/middleware");
 //user route
 
-// register http://localhost:5000user/register
+// register https://projects-management-itbs.herokuapp.comuser/register
 //router.post("/register", middleware.validator, UserControllers.addUser);
 router.post("/register",middleware.validator ,UserControllers.addUser);
 
-// login http://localhost:5000/user/login
+// login https://projects-management-itbs.herokuapp.com/user/login
 router.post("/login", UserControllers.login);
 
 // delete  tasks
 router.patch("/deleteUser/:id",UserControllers.deleteUser)
 
 
-// register http://localhost:5000/user/logout
+// register https://projects-management-itbs.herokuapp.com/user/logout
 router.get("/logout", UserControllers.logout);
 
 //the login and the logout part and checkAuth works only on the browser

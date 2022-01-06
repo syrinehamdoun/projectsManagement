@@ -1090,7 +1090,7 @@ var PostService = /** @class */ (function () {
                 'Content-Type': 'application/json'
             })
         };
-        this.url = 'http://localhost:5000';
+        this.url = 'https://projects-management-itbs.herokuapp.com';
     }
     PostService.prototype.getPosts = function () {
         return this

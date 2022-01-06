@@ -466,7 +466,7 @@ var TaskBoardService = /** @class */ (function () {
                 'Content-Type': 'application/json'
             })
         };
-        this.url = 'http://localhost:5000';
+        this.url = 'https://projects-management-itbs.herokuapp.com';
         this.tasks = [];
         //this.getTasks() ;
     }
@@ -602,7 +602,7 @@ __webpack_require__.r(__webpack_exports__);
 var WebRequestService = /** @class */ (function () {
     function WebRequestService(http) {
         this.http = http;
-        this.ROOT_URL = 'http://localhost:5000';
+        this.ROOT_URL = 'https://projects-management-itbs.herokuapp.com';
     }
     WebRequestService.prototype.get = function (url) {
         return this.http.get(this.ROOT_URL + "/" + url);

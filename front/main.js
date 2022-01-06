@@ -314,7 +314,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var config = { url: 'http://localhost:5000', options: {} };
+var config = { url: 'https://projects-management-itbs.herokuapp.com', options: {} };
 var DEFAULT_PERFECT_SCROLLBAR_CONFIG = {
     suppressScrollX: true,
     wheelPropagation: false
@@ -1311,7 +1311,7 @@ var LoginService = /** @class */ (function () {
     function LoginService(http, router) {
         this.http = http;
         this.router = router;
-        this.url = 'http://localhost:5000';
+        this.url = 'https://projects-management-itbs.herokuapp.com';
         this.currentUserSubject = new rxjs__WEBPACK_IMPORTED_MODULE_5__["BehaviorSubject"](JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -3348,7 +3348,7 @@ var UserService = /** @class */ (function () {
                 'Content-Type': 'application/json'
             })
         };
-        this.url = 'http://localhost:5000';
+        this.url = 'https://projects-management-itbs.herokuapp.com';
     }
     UserService.prototype.getUsers = function () {
         return this
@@ -3403,7 +3403,7 @@ __webpack_require__.r(__webpack_exports__);
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-var BASE_URL = 'http://localhost:5000';
+var BASE_URL = 'https://projects-management-itbs.herokuapp.com';
 var environment = {
     production: false,
     chatUrl: BASE_URL,

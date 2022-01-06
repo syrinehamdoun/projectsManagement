@@ -38,7 +38,7 @@ var ClientService = /** @class */ (function () {
                 'Content-Type': 'application/json'
             })
         };
-        this.url = 'http://localhost:5000';
+        this.url = 'https://projects-management-itbs.herokuapp.com';
     }
     ClientService.prototype.getClients = function () {
         return this
@@ -292,7 +292,7 @@ var TimesheetService = /** @class */ (function () {
                 'Content-Type': 'application/json'
             })
         };
-        this.url = 'http://localhost:5000';
+        this.url = 'https://projects-management-itbs.herokuapp.com';
     }
     TimesheetService.prototype.getTimesheets = function () {
         return this

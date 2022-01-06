@@ -15,7 +15,7 @@ export class TaskBoardService {
           'Content-Type': 'application/json'
         })
       }
-    url = 'http://localhost:5000';
+    url = 'https://projects-management-itbs.herokuapp.com';
     public tasks: Task[] = [];
 
     constructor(private http: HttpClient,  private router: Router ,private webReqService: WebRequestService) { 

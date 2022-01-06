@@ -30,7 +30,7 @@ import { AuthGuard } from "./shared/auth/auth-guard.service";
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ActiveListComponent } from './active-list/active-list.component';
 import { MessageComponent } from './message/message.component';
-const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
+const config: SocketIoConfig = { url: 'https://projects-management-itbs.herokuapp.com', options: {} };
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false

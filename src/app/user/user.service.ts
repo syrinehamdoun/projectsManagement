@@ -12,7 +12,7 @@ export class UserService {
     })
   }
   constructor(private http: HttpClient,  private router: Router) { }
-  url = 'http://localhost:5000';
+  url = 'https://projects-management-itbs.herokuapp.com';
   getUsers() {
     return this
       .http

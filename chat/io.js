@@ -10,7 +10,7 @@ const initialize = server => {
   //const io = socketIo(server, { path: '/chat' });
   const io = require("socket.io")(server, {
     cors: {
-      origin: "http://localhost:4200",
+      origin: "https://projects-management-itbs.herokuapp.com",
       methods: ["GET", "POST"]
     }
   });

@@ -13,7 +13,7 @@ export class ProjectService {
   }
   constructor(private http: HttpClient,  private router: Router) { }
 
-  url = 'http://localhost:5000';
+  url = 'https://projects-management-itbs.herokuapp.com';
   getProjects() {
     return this
       .http
